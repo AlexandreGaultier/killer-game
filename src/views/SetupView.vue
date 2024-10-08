@@ -4,12 +4,17 @@
       <div class="card">
         <PlayerInput />
       </div>
+      <div class="mode-selection">
+        <input type="checkbox" id="hardMode" v-model="hardMode">
+        <label for="hardMode">Mode difficile</label>
+      </div>
       <PlayerList />
       <button @click="startGame" class="start-button">Commencer le jeu</button>
     </div>
 </template>
 
 <script lang="ts">
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useGameStore } from '../stores/gameStore'
 import PlayerInput from '../components/PlayerInput.vue'
@@ -20,13 +25,15 @@ export default {
   setup() {
     const router = useRouter()
     const gameStore = useGameStore()
+    const hardMode = ref(false)
 
     const startGame = () => {
+      gameStore.setHardMode(hardMode.value)
       gameStore.assignMissions()
       router.push('/game')
     }
 
-    return { startGame }
+    return { startGame, hardMode }
   }
 }
 </script>
@@ -48,5 +55,9 @@ export default {
   margin-top: 20px;
   font-size: 1.2em;
   padding: 12px 24px;
+}
+
+.mode-selection {
+  margin-bottom: 20px;
 }
 </style>

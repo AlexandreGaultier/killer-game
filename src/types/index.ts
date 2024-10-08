@@ -22,4 +22,5 @@ export interface Player {
     killerId: number
     victimId: number
     missionId: number
+    failureMessage?: string
   }

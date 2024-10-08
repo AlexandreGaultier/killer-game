@@ -5,6 +5,7 @@ import App from './App.vue'
 import SetupView from './views/SetupView.vue'
 import GameView from './views/GameView.vue'
 import AdminView from './views/AdminView.vue'
+import PodiumView from './views/PodiumView.vue'
 
 const app = createApp(App)
 const pinia = createPinia()
@@ -15,6 +16,7 @@ const router = createRouter({
     { path: '/', component: SetupView },
     { path: '/game', component: GameView },
     { path: '/admin', component: AdminView },
+    { path: '/podium', component: PodiumView },
   ]
 })
 

@@ -4,6 +4,7 @@
       <router-link to="/">Joueurs</router-link>
       <router-link to="/game">Jeu</router-link>
       <router-link to="/admin">Admin</router-link>
+      <router-link to="/podium">Podium</router-link>
     </nav>
     <router-view></router-view>
   </div>

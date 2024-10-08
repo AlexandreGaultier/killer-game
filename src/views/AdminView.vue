@@ -23,7 +23,7 @@
         <li v-for="assignment in pendingAssignments" :key="assignment.id">
           {{ getPlayerName(assignment.playerId) }} doit {{ getMissionDescription(assignment.missionId) }} 
           {{ getPlayerName(assignment.targetId) }}
-          <button @click="validateKill(assignment)">Valider</button>
+          <button @click="validateMission(assignment)">Valider</button>
           <button @click="rejectKill(assignment)">Rejeter</button>
         </li>
       </ul>
@@ -67,8 +67,8 @@ export default {
       return mission ? mission.description : 'Mission inconnue'
     }
 
-    const validateKill = (assignment: Assignment) => {
-      gameStore.completeKill(assignment.id)
+    const validateMission = (assignment: Assignment) => {
+      gameStore.validateMission(assignment.id)
     }
 
     const rejectKill = (assignment : Assignment) => {
@@ -93,7 +93,7 @@ export default {
       pendingAssignments, 
       getPlayerName, 
       getMissionDescription, 
-      validateKill, 
+      validateMission, 
       rejectKill,
       deleteMission,
       confirmReset 
@@ -104,10 +104,12 @@ export default {
 
 <style scoped>
 section {
-  margin-bottom: 2rem;
-  padding: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
 }
 
 ul {
@@ -130,7 +132,6 @@ button {
 .reset-section {
   margin-top: 2rem;
   padding: 1rem;
-  border-top: 1px solid #ccc;
 }
 
 .reset-button {

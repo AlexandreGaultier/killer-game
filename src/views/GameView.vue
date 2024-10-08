@@ -50,7 +50,7 @@ export default {
     }
 
     const validateMission = (assignmentId: number) => {
-      gameStore.completeKill(assignmentId)
+      gameStore.validateMission(assignmentId)
     }
 
     const rejectMission = (assignmentId: number) => {

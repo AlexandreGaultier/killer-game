@@ -16,6 +16,7 @@ export const useGameStore = defineStore('game', {
     missions: [] as Mission[],
     assignments: [] as Assignment[],
     kills: [] as Kill[],
+    hardMode: false,
   }),
   actions: {
     addPlayer(name: string) {
@@ -65,7 +66,7 @@ export const useGameStore = defineStore('game', {
       this.saveToLocalStorage()
     },
 
-    completeKill(assignmentId: number) {
+    validateMission(assignmentId: number) {
       const assignment = this.assignments.find(a => a.id === assignmentId)
       if (!assignment) return
 
@@ -108,25 +109,39 @@ export const useGameStore = defineStore('game', {
     },
 
     rejectMission(assignmentId: number) {
-      const assignment: Assignment | undefined = this.assignments.find(a => a.id === assignmentId)
+      console.log("test");
+      
+      const assignment = this.assignments.find(a => a.id === assignmentId)
+      console.log("assignment", assignment);
+      
       if (!assignment) return
 
-      // Créer une nouvelle assignation avec la même cible mais une nouvelle mission
-      const newAssignment = {
-        id: Math.max(0, ...this.assignments.map(a => a.id)) + 1,
-        playerId: assignment.playerId,
-        targetId: assignment.targetId,
-        missionId: this.getRandomMissionId(),
-        completed: false
+      console.log("this.hardMode", this.hardMode);
+      
+      if (this.hardMode) {
+        console.log("AAAAAAAAAAAAAA");
+        
+        const player = this.players.find(p => p.id === assignment.playerId)
+        if (player) {
+          player.isAlive = false
+          
+          // Trouver l'assignation qui avait ce joueur comme cible
+          const assignmentTargetingPlayer = this.assignments.find(a => a.targetId === player.id)
+          console.log(assignmentTargetingPlayer);
+          
+          
+          if (assignmentTargetingPlayer) {
+            // Assigner la cible du joueur éliminé au joueur qui le ciblait
+            assignmentTargetingPlayer.targetId = assignment.targetId
+          }
+          
+          // Supprimer l'assignation du joueur éliminé
+          this.assignments = this.assignments.filter(a => a.playerId !== player.id)
+        }
+      } else {
+        // Logique existante pour le mode normal
+        assignment.missionId = this.getRandomMissionId()
       }
-
-      this.saveToLocalStorage()
-
-      // Remplacer l'ancienne assignation par la nouvelle
-      this.assignments = this.assignments.map(a => 
-        a.id === assignmentId ? newAssignment : a
-      )
-
       this.saveToLocalStorage()
     },
 
@@ -179,6 +194,10 @@ export const useGameStore = defineStore('game', {
         this.loadDefaultMissions()
         this.loadDefaultPlayers()
       }
+    },
+
+    setHardMode(mode: boolean) {
+      this.hardMode = mode
     },
   },
   getters: {
