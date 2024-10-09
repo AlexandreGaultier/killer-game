@@ -47,25 +47,24 @@ export default defineComponent({
 }
 
 .input-container button {
-  padding: 8px 16px;
-  background-color: #4CAF50;
-  color: white;
+  padding: 12px 24px;
+  font-size: 1.2em;
+  background-color: var(--primary-color);
+  color: var(--text-color);
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .input-container button:hover {
-  background-color: #45a049;
+  background-color: #5a8f66;
 }
 
-@media (min-width: 768px) {
-  .input-container {
-    flex-direction: row;
-  }
-
-  .input-container input {
-    flex-grow: 1;
+@media (max-width: 768px) {
+  .input-container button {
+    font-size: 1em;
+    padding: 10px 20px;
   }
 }
 </style>

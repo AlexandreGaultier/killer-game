@@ -1,6 +1,5 @@
 <template>
     <div class="mission-list">
-      <h2>Liste des missions</h2>
       <table>
         <thead>
           <tr>
@@ -14,7 +13,7 @@
             <td>{{ mission.id }}</td>
             <td>{{ mission.description }}</td>
             <td>
-              <button @click="deleteMission(mission.id)" class="delete-button">Supprimer</button>
+              <button @click="deleteMission(mission.id)" class="delete-button" title="Supprimer">🗑️</button>
             </td>
           </tr>
         </tbody>
@@ -59,15 +58,23 @@
   }
   
   .delete-button {
-    background-color: #ff4136;
-    color: white;
+    background-color: transparent;
+    color: var(--text-color);
     border: none;
     padding: 5px 10px;
     border-radius: 4px;
     cursor: pointer;
+    font-size: 1.5em;
+    transition: transform 0.2s ease;
   }
   
   .delete-button:hover {
-    background-color: #d0342b;
+    transform: scale(1.1);
+  }
+  
+  @media (max-width: 768px) {
+    .delete-button {
+      font-size: 1.2em;
+    }
   }
   </style>

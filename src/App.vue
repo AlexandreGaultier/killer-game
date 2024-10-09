@@ -40,10 +40,25 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Lato', sans-serif;
-  font-size: 18px;
+  font-size: 1.2em;
   background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
   color: var(--text-color);
   min-height: 100vh;
+}
+
+h1 {
+  font-size: 2.5em;
+  margin: 0.5em 0;
+}
+
+h2 {
+  font-size: 2em;
+  margin: 0.5em 0;
+}
+
+h3 {
+  font-size: 1.5em;
+  margin: 0.5em 0;
 }
 
 #container {
@@ -82,10 +97,6 @@ body {
   color: var(--primary-color);
 }
 
-h1 { font-size: 2.5em; }
-h2 { font-size: 2em; }
-h3 { font-size: 1.5em; }
-
 button {
   background-color: var(--primary-color);
   color: var(--text-color);
@@ -116,6 +127,22 @@ input::placeholder {
   #container {
     flex-direction: column-reverse;
     justify-content: space-between;
+  }
+
+  body {
+    font-size: 1.2em;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  h2 {
+    font-size: 1.7em;
+  }
+
+  h3 {
+    font-size: 1.3em;
   }
 
   .navbar {

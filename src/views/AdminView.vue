@@ -2,6 +2,7 @@
   <div class="admin-view">
     <h1>Administration</h1>
     <div class="card">
+      <h2>Réinitialiser le jeu</h2>
       <ResetButton />
     </div>
     <div class="card">
