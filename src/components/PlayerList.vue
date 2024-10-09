@@ -15,23 +15,29 @@
 </template>
 
 <script lang="ts">
-import { computed } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { useGameStore } from '../stores/gameStore'
 import PlayerChip from './PlayerChip.vue'
+import type { Player } from '../types'
 
-export default {
+export default defineComponent({
+  name: 'PlayerList',
   components: { PlayerChip },
   setup() {
     const gameStore = useGameStore()
-    const players = computed(() => gameStore.players)
 
-    const removePlayer = (playerId: number) => {
+    const players = computed<Player[]>(() => gameStore.players)
+
+    const removePlayer = (playerId: number): void => {
       gameStore.removePlayer(playerId)
     }
 
-    return { players, removePlayer }
+    return { 
+      players, 
+      removePlayer 
+    }
   }
-}
+})
 </script>
 
 <style scoped>
