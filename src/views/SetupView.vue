@@ -1,6 +1,7 @@
 <template>
   <div class="setup-view">
-    <h1>Gestion des joueurs et missions</h1>
+    <h1>Killer Game</h1>
+    <p>By Alexandre G.</p>
     <div class="card">
       <h2>Ajouter un joueur</h2>
       <PlayerInput />
@@ -16,7 +17,7 @@
         </div>
       </div>
     </div>
-    <div class="card content-card">
+    <!-- <div class="card content-card">
       <h2>Ajouter une mission</h2>
       <MissionInput />
     </div>
@@ -25,7 +26,7 @@
       <div class="mission-list-container">
         <MissionList />
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -84,9 +85,10 @@ export default defineComponent({
 .game-controls {
   display: flex;
   flex-direction: column;
+  gap: 1rem;
   align-items: center;
   width: 100%;
-  margin-bottom: 20px;
+  margin-top: 3rem;
 }
 
 .start-controls {

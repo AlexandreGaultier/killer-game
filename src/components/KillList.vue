@@ -1,7 +1,7 @@
 <template>
   <div class="kill-list card">
     <h2>Récapitulatif des éliminations</h2>
-    <table>
+    <table v-if="reversedFilteredKills.length > 0">
       <thead>
         <tr>
           <th>Tueur</th>
@@ -22,6 +22,7 @@
         </tr>
       </tbody>
     </table>
+    <p v-else class="no-kills-message">Aucune élimination n'a encore eu lieu.</p>
   </div>
 </template>
 
@@ -89,5 +90,12 @@ th {
 .failure-message {
   font-style: italic;
   color: #ff6b6b;
+}
+
+.no-kills-message {
+  text-align: center;
+  font-style: italic;
+  color: var(--text-color);
+  padding: 20px;
 }
 </style>

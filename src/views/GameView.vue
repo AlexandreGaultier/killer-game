@@ -79,8 +79,6 @@ export default {
   display: flex;
   flex-direction: column;
   background-color: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -108,6 +106,7 @@ summary {
 
 .validate-button, .reject-button {
   padding: 10px 15px;
+  font-size: 0.8em;
   border: none;
   border-radius: 4px;
   cursor: pointer;
