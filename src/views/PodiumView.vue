@@ -44,7 +44,7 @@
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
 import { useGameStore } from '../stores/gameStore'
-import type { Player, Kill } from '../types'
+// import type { Player, Kill } from '../types'
 
 export default defineComponent({
   name: 'PodiumView',
