@@ -10,10 +10,15 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="kill in kills" :key="kill.killerId">
-          <td><div class="player-chip">{{ getPlayerName(kill.killerId) }}</div></td>
-          <td><div class="player-chip player-dead">{{ getPlayerName(kill.victimId) }}</div></td>
-          <td>{{ getMissionDescription(kill.missionId) }}</td>
+        <tr v-for="kill in reversedFilteredKills" :key="kill.killerId + kill.victimId + kill.missionId">
+          <template v-if="kill.failureMessage">
+            <td colspan="3" class="failure-message">{{ kill.failureMessage }}</td>
+          </template>
+          <template v-else>
+            <td><div class="player-chip">{{ getPlayerName(kill.killerId) }}</div></td>
+            <td><div class="player-chip player-dead">{{ getPlayerName(kill.victimId) }}</div></td>
+            <td>{{ getMissionDescription(kill.missionId) }}</td>
+          </template>
         </tr>
       </tbody>
     </table>
@@ -27,7 +32,21 @@ import { useGameStore } from '../stores/gameStore'
 export default {
   setup() {
     const gameStore = useGameStore()
-    const kills = computed(() => gameStore.kills)
+    
+    const filteredKills = computed(() => {
+      return gameStore.kills.filter(kill => {
+        // En mode normal, on n'affiche que les vrais kills (pas les échecs)
+        if (!gameStore.hardMode) {
+          return kill.killerId !== kill.victimId
+        }
+        // En mode difficile, on affiche tout
+        return true
+      })
+    })
+
+    const reversedFilteredKills = computed(() => {
+      return [...filteredKills.value].reverse()
+    })
 
     const getPlayerName = (id: number) => {
       const player = gameStore.players.find(p => p.id === id)
@@ -39,7 +58,7 @@ export default {
       return mission ? mission.description : 'Mission inconnue'
     }
 
-    return { kills, getPlayerName, getMissionDescription }
+    return { reversedFilteredKills, getPlayerName, getMissionDescription }
   }
 }
 </script>
@@ -77,5 +96,10 @@ th {
   background-color: rgba(255, 99, 71, 0.2);
   border-color: rgba(255, 99, 71, 0.5);
   text-decoration: line-through;
+}
+
+.failure-message {
+  font-style: italic;
+  color: #ff6b6b;
 }
 </style>

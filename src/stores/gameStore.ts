@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { Player, Mission, Assignment, Kill } from '../types'
 import defaultMissions from '../data/default-missions.json'
+import failureMessages from '../data/failure-messages.json'
 
 const defaultPlayers = [
   { name: "Alex", isAlive: true, kills: 0 },
@@ -109,39 +110,39 @@ export const useGameStore = defineStore('game', {
     },
 
     rejectMission(assignmentId: number) {
-      console.log("test");
-      
       const assignment = this.assignments.find(a => a.id === assignmentId)
-      console.log("assignment", assignment);
-      
       if (!assignment) return
 
-      console.log("this.hardMode", this.hardMode);
-      
+      const player = this.players.find(p => p.id === assignment.playerId)
+      if (!player) return
+
       if (this.hardMode) {
-        console.log("AAAAAAAAAAAAAA");
+        player.isAlive = false
         
-        const player = this.players.find(p => p.id === assignment.playerId)
-        if (player) {
-          player.isAlive = false
-          
-          // Trouver l'assignation qui avait ce joueur comme cible
-          const assignmentTargetingPlayer = this.assignments.find(a => a.targetId === player.id)
-          console.log(assignmentTargetingPlayer);
-          
-          
-          if (assignmentTargetingPlayer) {
-            // Assigner la cible du joueur éliminé au joueur qui le ciblait
-            assignmentTargetingPlayer.targetId = assignment.targetId
-          }
-          
-          // Supprimer l'assignation du joueur éliminé
-          this.assignments = this.assignments.filter(a => a.playerId !== player.id)
+        // Trouver l'assignation qui avait ce joueur comme cible
+        const assignmentTargetingPlayer = this.assignments.find(a => a.targetId === player.id)
+        
+        if (assignmentTargetingPlayer) {
+          // Assigner la cible du joueur éliminé au joueur qui le ciblait
+          assignmentTargetingPlayer.targetId = assignment.targetId
         }
+        
+        // Supprimer l'assignation du joueur éliminé
+        this.assignments = this.assignments.filter(a => a.playerId !== player.id)
+
+        // Ajouter un "kill" pour l'échec seulement en mode difficile
+        const failureMessage = this.getRandomFailureMessage(player.name)
+        this.kills.push({
+          killerId: player.id,
+          victimId: player.id,
+          missionId: assignment.missionId,
+          failureMessage: failureMessage
+        })
       } else {
-        // Logique existante pour le mode normal
+        // En mode normal, on change simplement la mission
         assignment.missionId = this.getRandomMissionId()
       }
+
       this.saveToLocalStorage()
     },
 
@@ -198,6 +199,12 @@ export const useGameStore = defineStore('game', {
 
     setHardMode(mode: boolean) {
       this.hardMode = mode
+    },
+
+    getRandomFailureMessage(playerName: string) {
+      const messages = failureMessages.messages
+      const randomMessage = messages[Math.floor(Math.random() * messages.length)]
+      return randomMessage.replace('{name}', playerName)
     },
   },
   getters: {

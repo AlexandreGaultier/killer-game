@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mission-input">
     <input v-model="missionDescription" placeholder="Description de la mission" />
     <button @click="addMission">Ajouter une mission</button>
   </div>
@@ -25,3 +25,14 @@ export default {
   }
 }
 </script>
+<style scoped>
+.mission-input {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.mission-input input {
+  flex-grow: 1;
+}
+</style>

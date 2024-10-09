@@ -9,10 +9,10 @@
         </div>
       </div>
     </div>
-    <div class="other-players" v-if="otherPlayers.length > 0">
+    <div class="other-players" v-if="players.length > 0">
       <h3>Autres joueurs</h3>
       <div class="player-chips">
-        <div v-for="player in otherPlayers" :key="player.id" class="player-chip">
+        <div v-for="player in players" :key="player.id" class="player-chip">
           {{ player.name }} ({{ player.kills }})
         </div>
       </div>
@@ -43,7 +43,7 @@ export default {
         .slice(0, 3)
     })
 
-    const otherPlayers = computed(() => {
+    const players = computed(() => {
       return [...gameStore.players]
         .sort((a, b) => b.kills - a.kills)
         .slice(3)
@@ -65,7 +65,7 @@ export default {
 
     return {
       topThree,
-      otherPlayers,
+      players,
       getPlayerKills,
       getMissionDescription,
       getPlayerName,
@@ -96,28 +96,40 @@ export default {
 .podium-step {
   width: 30%;
   margin: 0 10px;
-  background: linear-gradient(to bottom, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+  background: linear-gradient(to bottom, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
 }
 
 .podium-step:hover {
   transform: translateY(-10px);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
-.place-1 { height: 100%; background-color: rgba(255, 215, 0, 0.3); }
-.place-2 { height: 80%; background-color: rgba(192, 192, 192, 0.3); }
-.place-3 { height: 60%; background-color: rgba(205, 127, 50, 0.3); }
+.place-1 { 
+  height: 100%; 
+  background: linear-gradient(to bottom, rgba(255, 215, 0, 0.4), rgba(255, 215, 0, 0.2));
+}
+.place-2 { 
+  height: 80%; 
+  background: linear-gradient(to bottom, rgba(192, 192, 192, 0.4), rgba(192, 192, 192, 0.2));
+}
+.place-3 { 
+  height: 60%; 
+  background: linear-gradient(to bottom, rgba(205, 127, 50, 0.4), rgba(205, 127, 50, 0.2));
+}
 
 .player-info {
   padding: 20px;
   background-color: rgba(0, 0, 0, 0.7);
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
 }
 
 .player-info h2 {
@@ -129,6 +141,7 @@ export default {
 .kills {
   font-size: 1.2em;
   color: #ffd700;
+  text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
 }
 
 .other-players {

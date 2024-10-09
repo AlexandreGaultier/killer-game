@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="player-input">
       <input 
         v-model="playerName" 
         @keyup.enter="addPlayer"
@@ -29,3 +29,14 @@
     }
   }
   </script>
+  <style scoped>
+  .player-input {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .player-input input {
+    flex-grow: 1;
+  }
+  </style>

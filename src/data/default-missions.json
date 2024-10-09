@@ -19,6 +19,42 @@
         {
             "id": 5,
             "description": "Faire imiter un animal à la cible"
+        },
+        {
+            "id": 6,
+            "description": "Convaincre la cible de porter ses vêtements à l'envers pendant 10 minutes"
+        },
+        {
+            "id": 7,
+            "description": "Faire avouer à la cible son crush secret"
+        },
+        {
+            "id": 8,
+            "description": "Obtenir que la cible fasse une déclaration d'amour à une personne présente"
+        },
+        {
+            "id": 9,
+            "description": "Faire manger un aliment bizarre à la cible (au choix de l'assassin)"
+        },
+        {
+            "id": 10,
+            "description": "Convaincre la cible de parler avec un accent ridicule"
+        },
+        {
+            "id": 11,
+            "description": "Faire danser la macarena à la cible en public"
+        },
+        {
+            "id": 12,
+            "description": "Obtenir que la cible envoie un message embarrassant à son crush"
+        },
+        {
+            "id": 13,
+            "description": "Faire porter un chapeau en aluminium (ou papier, ou démerde toi) à la cible"
+        },
+        {
+            "id": 14,
+            "description": "Convaincre la cible de se faire maquiller"
         }
-  ]
+    ]
 }
