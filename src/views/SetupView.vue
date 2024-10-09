@@ -7,6 +7,7 @@
     </div>
     <PlayerList />
     <div class="game-controls">
+      <ResetButton class="reset-button" />
       <div class="start-controls">
         <button @click="startGame" class="start-button">Commencer le jeu</button>
         <div class="mode-selection">
@@ -14,7 +15,6 @@
           <label for="hardMode" title="Mode difficile">💀</label>
         </div>
       </div>
-      <ResetButton class="reset-button" />
     </div>
     <div class="card content-card">
       <h2>Ajouter une mission</h2>
@@ -178,8 +178,13 @@ export default defineComponent({
 @media (max-width: 768px) {
   .start-button,
   .mode-selection label {
+    margin-top: 10px;
     font-size: 1em;
     padding: 10px 20px;
+  }
+
+  .mode-selection label {
+    font-size: 1.4em;
   }
 }
 </style>
