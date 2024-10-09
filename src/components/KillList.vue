@@ -15,8 +15,8 @@
             <td colspan="3" class="failure-message">{{ kill.failureMessage }}</td>
           </template>
           <template v-else>
-            <td><div class="player-chip">{{ getPlayerName(kill.killerId) }}</div></td>
-            <td><div class="player-chip player-dead">{{ getPlayerName(kill.victimId) }}</div></td>
+            <td><PlayerChip :name="getPlayerName(kill.killerId)" /></td>
+            <td><PlayerChip :name="getPlayerName(kill.victimId)" :isAlive="false" /></td>
             <td>{{ getMissionDescription(kill.missionId) }}</td>
           </template>
         </tr>
@@ -28,8 +28,10 @@
 <script lang="ts">
 import { computed } from 'vue'
 import { useGameStore } from '../stores/gameStore'
+import PlayerChip from './PlayerChip.vue'
 
 export default {
+  components: { PlayerChip },
   setup() {
     const gameStore = useGameStore()
     
