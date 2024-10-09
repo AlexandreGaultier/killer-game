@@ -129,7 +129,7 @@ export default defineComponent({
   justify-content: center;
   width: 48px;
   height: 48px;
-  background-color: var(--primary-color);
+  background-color: #5a8f66;
   color: var(--text-color);
   border-radius: 0 4px 4px 0;
   cursor: pointer;
@@ -138,7 +138,7 @@ export default defineComponent({
 }
 
 .mode-selection input[type="checkbox"]:checked + label {
-  background-color: #5a8f66;
+  background-color: var(--primary-color);
 }
 
 .mission-list-container {
