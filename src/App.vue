@@ -1,7 +1,8 @@
 <template>
   <div id="container">
     <nav class="navbar">
-      <router-link to="/" class="nav-item">Joueurs</router-link>
+      <router-link to="/" class="nav-item">Règles</router-link>
+      <router-link to="/setup" class="nav-item">Joueurs</router-link>
       <router-link to="/game" class="nav-item">Jeu</router-link>
       <router-link to="/admin" class="nav-item">Admin</router-link>
       <router-link to="/podium" class="nav-item">Podium</router-link>
