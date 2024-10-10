@@ -76,7 +76,7 @@ h3 { font-size: 1.5em; margin: 0.5em 0; }
   top: 0;
   z-index: 1000;
   display: flex;
-  background-color: var(--background-color);
+  background-color: var(--secondary-color); /* Changé pour une couleur opaque */
   border-radius: 8px;
   margin-bottom: 20px;
   overflow: hidden;
@@ -90,12 +90,13 @@ h3 { font-size: 1.5em; margin: 0.5em 0; }
   flex: 1;
   text-align: center;
   padding: 15px 0;
+  background-color: var(--secondary-color); /* Ajout d'une couleur de fond opaque */
 }
 
 .nav-item:hover,
 .nav-item.router-link-active {
-  background-color: rgba(113, 178, 128, 0.2);
-  color: var(--primary-color);
+  background-color: var(--primary-color); /* Changé pour une couleur opaque */
+  color: var(--text-color);
 }
 
 .nav-item.disabled {
@@ -153,6 +154,7 @@ input::placeholder {
     margin-top: 2rem;
     margin-bottom: 0;
     border-radius: 8px;
+    background-color: var(--secondary-color); /* Assurez-vous que c'est opaque en mobile aussi */
   }
 
   .nav-item {
@@ -161,6 +163,7 @@ input::placeholder {
     justify-content: center;
     align-items: center;
     height: 50px;
+    background-color: var(--secondary-color); /* Assurez-vous que c'est opaque en mobile aussi */
   }
 
   .nav-text { display: none; }
