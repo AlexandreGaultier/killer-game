@@ -50,7 +50,7 @@ export default defineComponent({
 
     const startGame = () => {
       gameStore.setHardMode(hardMode.value)
-      gameStore.assignMissions()
+      gameStore.startGame()
       router.push('/game')
     }
 

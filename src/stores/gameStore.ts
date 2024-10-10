@@ -18,6 +18,7 @@ export const useGameStore = defineStore('game', {
     assignments: [] as Assignment[],
     kills: [] as Kill[],
     hardMode: false,
+    isGameStarted: false,
   }),
   actions: {
     addPlayer(name: string) {
@@ -171,6 +172,13 @@ export const useGameStore = defineStore('game', {
       this.loadDefaultMissions()
       this.assignments = []
       this.kills = []
+      this.isGameStarted = false
+      this.saveToLocalStorage()
+    },
+
+    startGame() {
+      this.assignMissions()
+      this.isGameStarted = true
       this.saveToLocalStorage()
     },
 
@@ -180,6 +188,7 @@ export const useGameStore = defineStore('game', {
         missions: this.missions,
         assignments: this.assignments,
         kills: this.kills,
+        isGameStarted: this.isGameStarted,
       }))
     },
 
@@ -191,9 +200,11 @@ export const useGameStore = defineStore('game', {
         this.missions = parsed.missions
         this.assignments = parsed.assignments
         this.kills = parsed.kills
+        this.isGameStarted = parsed.isGameStarted || false
       } else {
         this.loadDefaultMissions()
         this.loadDefaultPlayers()
+        this.isGameStarted = false
       }
     },
 

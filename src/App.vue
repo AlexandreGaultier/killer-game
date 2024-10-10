@@ -2,8 +2,8 @@
   <div id="container">
     <nav class="navbar">
       <router-link to="/" class="nav-item">Règles</router-link>
-      <router-link to="/setup" class="nav-item">Joueurs</router-link>
-      <router-link to="/game" class="nav-item">Jeu</router-link>
+      <router-link to="/setup" class="nav-item" :class="{ disabled: gameStore.isGameStarted }">Joueurs</router-link>
+      <router-link to="/game" class="nav-item" :class="{ disabled: !gameStore.isGameStarted }">Jeu</router-link>
       <router-link to="/admin" class="nav-item">Admin</router-link>
       <router-link to="/podium" class="nav-item">Podium</router-link>
     </nav>
@@ -23,6 +23,8 @@ export default defineComponent({
     onMounted(() => {
       gameStore.loadFromLocalStorage()
     })
+
+    return { gameStore }
   }
 })
 </script>
@@ -158,5 +160,11 @@ input::placeholder {
   router-view {
     flex-grow: 1;
   }
+}
+
+.nav-item.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
 }
 </style>

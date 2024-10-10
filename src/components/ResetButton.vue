@@ -16,7 +16,7 @@ setup() {
     const resetGame = (): void => {
     if (confirm('Êtes-vous sûr de vouloir réinitialiser le jeu ? Toutes les données seront perdues.')) {
         gameStore.resetGame()
-        router.push('/')
+        router.push('/setup')
     }
     }
 
