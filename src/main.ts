@@ -21,17 +21,17 @@ const router = createRouter({
     { 
       path: '/setup', 
       component: SetupView,
-      beforeEnter: (to, _from, next) => {
+      beforeEnter: (_to, _from, next) => {
         const gameStore = useGameStore()
-        gameStore.isGameStarted ? next({ path: '/game', replace: true }) : next({ path: to.path, replace: true })
+        gameStore.isGameStarted ? next('/game') : next()
       }
     },
     { 
       path: '/game', 
       component: GameView,
-      beforeEnter: (to, _from, next) => {
+      beforeEnter: (_to, _from, next) => {
         const gameStore = useGameStore()
-        gameStore.isGameStarted ? next({ path: '/setup', replace: true }) : next({ path: to.path, replace: true })
+        gameStore.isGameStarted ? next('/setup') : next()
       }
     },
     { path: '/admin', component: AdminView },

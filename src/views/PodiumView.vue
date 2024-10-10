@@ -283,12 +283,6 @@ export default defineComponent({
     margin-top: 20px;
   }
 
-  .kill-list li {
-    /* Supprimez ces lignes car elles sont maintenant dans le style principal */
-    /* flex-direction: column;
-    align-items: flex-start; */
-  }
-
   .victim {
     margin-bottom: 5px;
   }
