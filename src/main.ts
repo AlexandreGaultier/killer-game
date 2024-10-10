@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, RouteLocationNormalized } from 'vue-router'
 import App from './App.vue'
 import SetupView from './views/SetupView.vue'
 import GameView from './views/GameView.vue'
@@ -18,33 +18,24 @@ const router = createRouter({
   history: createWebHistory(),
   routes: [
     { path: '/', component: RulesView },
-    { 
-      path: '/setup', 
-      component: SetupView,
-      beforeEnter: (_to, _from, next) => {
-        const gameStore = useGameStore()
-        if (gameStore.isGameStarted) {
-          next('/game')
-        } else {
-          next()
-        }
-      }
-    },
-    { 
-      path: '/game', 
-      component: GameView,
-      beforeEnter: (_to, _from, next) => {
-        const gameStore = useGameStore()
-        if (!gameStore.isGameStarted) {
-          next('/setup')
-        } else {
-          next()
-        }
-      }
-    },
+    { path: '/setup', component: SetupView },
+    { path: '/game', component: GameView },
     { path: '/admin', component: AdminView },
     { path: '/podium', component: PodiumView },
   ]
+})
+
+// Garde de navigation global
+router.beforeEach((to: RouteLocationNormalized, _from: RouteLocationNormalized, next) => {
+  const gameStore = useGameStore()
+
+  if (to.path === '/setup' && gameStore.isGameStarted) {
+    next('/game')
+  } else if (to.path === '/game' && !gameStore.isGameStarted) {
+    next('/setup')
+  } else {
+    next()
+  }
 })
 
 app.use(router)
