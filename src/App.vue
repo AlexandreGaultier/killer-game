@@ -1,22 +1,21 @@
 <template>
   <div id="container">
     <nav class="navbar">
-      <router-link to="/" class="nav-item">Règles</router-link>
-      <router-link to="/setup" class="nav-item" :class="{ disabled: gameStore.isGameStarted }">Joueurs</router-link>
-      <router-link to="/game" class="nav-item" :class="{ disabled: !gameStore.isGameStarted }">Jeu</router-link>
-      <router-link to="/admin" class="nav-item">Admin</router-link>
-      <router-link to="/podium" class="nav-item">Podium</router-link>
+      <router-link v-for="item in navItems" :key="item.path" :to="item.path" class="nav-item" :class="{ disabled: item.isDisabled }">
+        <span class="nav-text">{{ item.text }}</span>
+        <span class="nav-icon">{{ item.icon }}</span>
+      </router-link>
     </nav>
     <router-view></router-view>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from 'vue'
+import { defineComponent, onMounted, computed } from 'vue'
 import { useGameStore } from './stores/gameStore'
 
 export default defineComponent({
-  name: 'container',
+  name: 'App',
   setup() {
     const gameStore = useGameStore()
 
@@ -24,7 +23,15 @@ export default defineComponent({
       gameStore.loadFromLocalStorage()
     })
 
-    return { gameStore }
+    const navItems = computed(() => [
+      { path: '/', text: 'Règles', icon: '📖', isDisabled: gameStore.isGameStarted },
+      { path: '/setup', text: 'Joueurs', icon: '👥', isDisabled: gameStore.isGameStarted },
+      { path: '/game', text: 'Jeu', icon: '🎮', isDisabled: !gameStore.isGameStarted },
+      { path: '/admin', text: 'Admin', icon: '⚙️', isDisabled: false },
+      { path: '/podium', text: 'Podium', icon: '🏆', isDisabled: false },
+    ])
+
+    return { gameStore, navItems }
   }
 })
 </script>
@@ -37,8 +44,8 @@ export default defineComponent({
   --secondary-color: #134E5E;
   --text-color: #ffffff;
   --background-color: rgba(0, 0, 0, 0.5);
-  --accent-red: #E57373;  /* Nouveau rouge plus doux */
-  --accent-blue: #64B5F6; /* Nouveau bleu plus doux */
+  --accent-red: #E57373;
+  --accent-blue: #64B5F6;
 }
 
 body {
@@ -51,20 +58,9 @@ body {
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 2.5em;
-  margin: 0.5em 0;
-}
-
-h2 {
-  font-size: 2em;
-  margin: 0.5em 0;
-}
-
-h3 {
-  font-size: 1.5em;
-  margin: 0.5em 0;
-}
+h1 { font-size: 2.5em; margin: 0.5em 0; }
+h2 { font-size: 2em; margin: 0.5em 0; }
+h3 { font-size: 1.5em; margin: 0.5em 0; }
 
 #container {
   max-width: 1200px;
@@ -102,6 +98,17 @@ h3 {
   color: var(--primary-color);
 }
 
+.nav-item.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.nav-icon {
+  display: none;
+  font-size: 24px;
+}
+
 button {
   background-color: var(--primary-color);
   color: var(--text-color);
@@ -134,21 +141,10 @@ input::placeholder {
     justify-content: space-between;
   }
 
-  body {
-    font-size: 1.2em;
-  }
-
-  h1 {
-    font-size: 2em;
-  }
-
-  h2 {
-    font-size: 1.7em;
-  }
-
-  h3 {
-    font-size: 1.3em;
-  }
+  body { font-size: 1.2em; }
+  h1 { font-size: 2em; }
+  h2 { font-size: 1.7em; }
+  h3 { font-size: 1.3em; }
 
   .navbar {
     position: sticky;
@@ -156,17 +152,22 @@ input::placeholder {
     top: auto;
     margin-top: 2rem;
     margin-bottom: 0;
-    border-radius: 8px 8px 8px 8px;
+    border-radius: 8px;
   }
+
+  .nav-item {
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+  }
+
+  .nav-text { display: none; }
+  .nav-icon { display: inline-block; }
 
   router-view {
     flex-grow: 1;
   }
-}
-
-.nav-item.disabled {
-  opacity: 0.5;
-  pointer-events: none;
-  cursor: not-allowed;
 }
 </style>
