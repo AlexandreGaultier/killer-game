@@ -21,7 +21,7 @@ const router = createRouter({
     { 
       path: '/setup', 
       component: SetupView,
-      beforeEnter: (to, from, next) => {
+      beforeEnter: (_to, _from, next) => {
         const gameStore = useGameStore()
         if (gameStore.isGameStarted) {
           next('/game')
@@ -33,7 +33,7 @@ const router = createRouter({
     { 
       path: '/game', 
       component: GameView,
-      beforeEnter: (to, from, next) => {
+      beforeEnter: (_to, _from, next) => {
         const gameStore = useGameStore()
         if (!gameStore.isGameStarted) {
           next('/setup')
