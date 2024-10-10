@@ -3,9 +3,14 @@
     <input 
       v-model="playerName" 
       @keyup.enter="addPlayer"
+      @input="validateInput"
       placeholder="Nom du joueur" 
+      maxlength="15"
+      pattern="[A-Za-z0-9\s]+"
+      title="Lettres, chiffres et espaces uniquement"
     />
     <button @click="addPlayer">Ajouter un joueur</button>
+    <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
   </div>
 </template>
 
@@ -18,16 +23,31 @@ export default defineComponent({
   setup() {
     const gameStore = useGameStore()
     const playerName = ref('')
+    const errorMessage = ref('')
 
-    const addPlayer = (): void => {
+    const validateInput = (): void => {
       const trimmedName = playerName.value.trim()
-      if (trimmedName) {
-        gameStore.addPlayer(trimmedName)
-        playerName.value = ''
+      if (!trimmedName) {
+        errorMessage.value = 'Le nom du joueur ne peut pas être vide.'
+      } else if (!/^[A-Za-z0-9\s]{1,15}$/.test(trimmedName)) {
+        errorMessage.value = 'Le nom doit contenir uniquement des lettres, chiffres et espaces (15 caractères max).'
+      } else {
+        errorMessage.value = ''
       }
     }
 
-    return { playerName, addPlayer }
+    const addPlayer = (): void => {
+      const trimmedName = playerName.value.trim()
+      if (trimmedName && /^[A-Za-z0-9\s]{1,15}$/.test(trimmedName)) {
+        gameStore.addPlayer(trimmedName)
+        playerName.value = ''
+        errorMessage.value = ''
+      } else {
+        validateInput()
+      }
+    }
+
+    return { playerName, addPlayer, errorMessage, validateInput }
   }
 })
 </script>
@@ -66,5 +86,11 @@ export default defineComponent({
     font-size: 1em;
     padding: 10px 20px;
   }
+}
+
+.error-message {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 5px;
 }
 </style>

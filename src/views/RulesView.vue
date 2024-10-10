@@ -99,11 +99,33 @@
   }
   
   ol {
-    padding-left: 20px;
+    padding-left: 0;
+    list-style-type: none;
+    counter-reset: item;
   }
   
   li {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  li::before {
+    counter-increment: item;
+    content: counter(item);
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9em;
+    font-weight: bold;
+    padding: 5px;
+    margin-right: 10px;
+    flex-shrink: 0;
   }
   
   .important-note {
@@ -141,6 +163,12 @@
   
     h2 {
       font-size: 1.5em;
+    }
+  
+    li::before {
+      width: 20px;
+      height: 20px;
+      font-size: 0.8em;
     }
   }
   </style>

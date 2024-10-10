@@ -1,80 +1,136 @@
 <template>
     <div class="mission-list">
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Description</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="mission in missions" :key="mission.id">
-            <td>{{ mission.id }}</td>
-            <td>{{ mission.description }}</td>
-            <td>
-              <button @click="deleteMission(mission.id)" class="delete-button" title="Supprimer">🗑️</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <h2>Liste des missions</h2>
+      <div class="mission-grid">
+        <div v-for="mission in missions" :key="mission.id" class="mission-item">
+          <p v-if="!editingMission || editingMission.id !== mission.id">{{ mission.description }}</p>
+          <input
+            v-else
+            v-model="editingMission.description"
+            @keyup.enter="saveMission"
+            @keyup.esc="cancelEdit"
+          >
+          <div class="button-group">
+            <button v-if="!editingMission || editingMission.id !== mission.id" @click="editMission(mission)" class="edit-button">Modifier</button>
+            <button v-else @click="saveMission" class="save-button">Enregistrer</button>
+            <button v-if="editingMission && editingMission.id === mission.id" @click="cancelEdit" class="cancel-button">Annuler</button>
+            <button @click="deleteMission(mission.id)" class="delete-button">Supprimer</button>
+          </div>
+        </div>
+      </div>
     </div>
-  </template>
-  
-  <script lang="ts">
-  import { computed, defineComponent } from 'vue'
-  import { useGameStore } from '../stores/gameStore'
-  
-  export default defineComponent({
-    name: 'MissionList',
-    setup() {
-      const gameStore = useGameStore()
-  
-      const missions = computed(() => gameStore.missions)
-  
-      const deleteMission = (id: number): void => {
-        gameStore.deleteMission(id)
+</template>
+
+<script lang="ts">
+import { computed, defineComponent, ref } from 'vue'
+import { useGameStore } from '../stores/gameStore'
+import { Mission } from '../types'
+
+export default defineComponent({
+  name: 'MissionList',
+  setup() {
+    const gameStore = useGameStore()
+    const missions = computed(() => gameStore.missions)
+    const editingMission = ref<Mission | null>(null)
+
+    const deleteMission = (id: number) => {
+      gameStore.deleteMission(id)
+    }
+
+    const editMission = (mission: Mission) => {
+      editingMission.value = { ...mission }
+    }
+
+    const saveMission = () => {
+      if (editingMission.value) {
+        gameStore.updateMission(editingMission.value.id, editingMission.value.description)
+        editingMission.value = null
       }
-  
-      return { missions, deleteMission }
     }
-  })
-  </script>
-  
-  <style scoped>
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  th, td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  
-  th {
-    background-color: rgba(0, 0, 0, 0.2);
-  }
-  
-  .delete-button {
-    background-color: transparent;
-    color: var(--text-color);
-    border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1.5em;
-    transition: transform 0.2s ease;
-  }
-  
-  .delete-button:hover {
-    transform: scale(1.1);
-  }
-  
-  @media (max-width: 768px) {
-    .delete-button {
-      font-size: 1.2em;
+
+    const cancelEdit = () => {
+      editingMission.value = null
     }
+
+    return { missions, deleteMission, editMission, saveMission, cancelEdit, editingMission }
   }
-  </style>
+})
+</script>
+
+<style scoped>
+.mission-list {
+  width: 100%;
+}
+
+.mission-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 colonnes pour les écrans de bureau */
+  gap: 20px;
+}
+
+.mission-item {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.mission-item p {
+  margin: 0 0 10px 0;
+  word-wrap: break-word;
+}
+
+.mission-item input {
+  margin-bottom: 10px;
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.edit-button, .save-button, .cancel-button, .delete-button {
+  flex: 1;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.edit-button {
+  background-color: var(--accent-blue);
+  color: white;
+}
+
+.save-button {
+  background-color: var(--accent-blue);
+  color: white;
+}
+
+.delete-button {
+  background-color: var(--accent-red);
+  color: white;
+}
+
+.edit-button:hover, .save-button:hover { background-color: #5a9bd5; }
+.delete-button:hover { background-color: #d16666; }
+
+@media (max-width: 1200px) {
+  .mission-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 colonnes pour les écrans moyens */
+  }
+}
+
+@media (max-width: 768px) {
+  .mission-grid {
+    grid-template-columns: 1fr; /* 1 colonne pour les écrans mobiles */
+  }
+}
+</style>

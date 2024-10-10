@@ -5,7 +5,7 @@
     <h2>Missions en cours</h2>
     <div class="mission-cards">
       <div v-for="assignment in pendingAssignments" :key="assignment.id" class="card mission-card">
-        <h3>{{ getPlayerName(assignment.playerId) }}</h3>
+        <h3>{{ truncateName(getPlayerName(assignment.playerId)) }}</h3>
         <details>
           <summary>Voir les détails</summary>
           <p><strong>Cible:</strong> {{ getPlayerName(assignment.targetId) }}</p>
@@ -57,12 +57,17 @@ export default {
       gameStore.rejectMission(assignmentId)
     }
 
+    const truncateName = (name: string) => {
+      return name.length > 11 ? name.slice(0, 11) + '...' : name
+    }
+
     return { 
       pendingAssignments, 
       getPlayerName, 
       getMissionDescription,
       validateMission,
-      rejectMission
+      rejectMission,
+      truncateName
     }
   }
 }
@@ -87,6 +92,9 @@ export default {
 .mission-card h3 {
   margin-top: 0;
   margin-bottom: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 details {
@@ -104,17 +112,8 @@ summary {
   justify-content: space-between;
 }
 
-.validate-button, .reject-button {
-  padding: 10px 15px;
-  font-size: 0.8em;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
 .validate-button {
-  background-color: #71B280;
+  background-color: var(--primary-color);
   color: #ffffff;
 }
 
@@ -123,11 +122,51 @@ summary {
 }
 
 .reject-button {
-  background-color: #ff4136;
+  background-color: var(--accent-red);
   color: #ffffff;
 }
 
 .reject-button:hover {
-  background-color: #e63b31;
+  background-color: #d16666;
+}
+
+/* Styles pour les appareils mobiles */
+@media (max-width: 768px) {
+  .mission-cards {
+    grid-template-columns: 1fr; /* Une seule colonne sur mobile */
+  }
+
+  .mission-card {
+    padding: 15px;
+  }
+
+  .button-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .validate-button,
+  .reject-button {
+    width: 100%;
+    padding: 10px;
+  }
+
+  /* Styles pour le tableau récapitulatif des éliminations (KillList) */
+  :deep(.kill-list) {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 10px;
+  }
+
+  :deep(.kill-list table) {
+    width: 100%;
+    min-width: 300px;
+  }
+
+  :deep(.kill-list th),
+  :deep(.kill-list td) {
+    padding: 8px;
+    font-size: 0.9em;
+  }
 }
 </style>

@@ -37,6 +37,8 @@ export default defineComponent({
   --secondary-color: #134E5E;
   --text-color: #ffffff;
   --background-color: rgba(0, 0, 0, 0.5);
+  --accent-red: #E57373;  /* Nouveau rouge plus doux */
+  --accent-blue: #64B5F6; /* Nouveau bleu plus doux */
 }
 
 body {

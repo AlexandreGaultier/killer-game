@@ -217,6 +217,14 @@ export const useGameStore = defineStore('game', {
       const randomMessage = messages[Math.floor(Math.random() * messages.length)]
       return randomMessage.replace('{name}', playerName)
     },
+
+    updateMission(id: number, description: string) {
+      const missionIndex = this.missions.findIndex(m => m.id === id)
+      if (missionIndex !== -1) {
+        this.missions[missionIndex].description = description
+        this.saveToLocalStorage()
+      }
+    },
   },
   getters: {
     alivePlayers: (state) => state.players.filter(p => p.isAlive),

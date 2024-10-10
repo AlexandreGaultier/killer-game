@@ -50,4 +50,14 @@ export default defineComponent({
   flex-wrap: wrap;
   gap: 10px;
 }
+
+.delete-button {
+  background-color: var(--accent-red);
+  color: white;
+}
+
+.delete-button:hover {
+  background-color: #d16666;
+}
+
 </style>

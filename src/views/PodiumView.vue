@@ -197,8 +197,8 @@ export default defineComponent({
   background-color: rgba(255, 255, 255, 0.05);
   border-radius: 5px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;  /* Changé de row à column */
+  align-items: flex-start; /* Aligne les éléments à gauche */
   transition: all 0.3s ease;
 }
 
@@ -209,7 +209,8 @@ export default defineComponent({
 
 .victim {
   font-weight: bold;
-  color: #ff4136;
+  color: var(--accent-red);  /* Utilisation de la nouvelle variable de couleur */
+  margin-bottom: 5px;  /* Ajoute un espace sous le nom de la victime */
 }
 
 .mission {
@@ -227,7 +228,7 @@ export default defineComponent({
 
 @media (max-width: 768px) {
   .podium-view {
-    padding: 10px;
+    padding: 5px;
   }
 
   h1 {
@@ -283,8 +284,9 @@ export default defineComponent({
   }
 
   .kill-list li {
-    flex-direction: column;
-    align-items: flex-start;
+    /* Supprimez ces lignes car elles sont maintenant dans le style principal */
+    /* flex-direction: column;
+    align-items: flex-start; */
   }
 
   .victim {

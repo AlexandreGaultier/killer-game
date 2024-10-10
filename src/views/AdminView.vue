@@ -9,7 +9,7 @@
       <h2>Ajouter une mission</h2>
       <MissionInput />
     </div>
-    <div class="card">
+    <div class="card mission-list-card">
       <MissionList />
     </div>
   </div>
@@ -30,6 +30,8 @@ export default defineComponent({
 <style scoped>
 .admin-view {
   padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .card {
@@ -37,5 +39,19 @@ export default defineComponent({
   border-radius: 8px;
   padding: 20px;
   margin-bottom: 20px;
+}
+
+.mission-list-card {
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .admin-view {
+    padding: 10px;
+  }
+
+  .card {
+    padding: 15px;
+  }
 }
 </style>

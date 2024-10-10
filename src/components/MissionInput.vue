@@ -3,9 +3,14 @@
     <input 
       v-model="missionDescription" 
       @keyup.enter="addMission"
+      @input="validateInput"
       placeholder="Description de la mission" 
+      maxlength="90"
+      pattern="[A-Za-z0-9\s.,!?]+"
+      title="Lettres, chiffres, espaces et ponctuation basique uniquement"
     />
     <button @click="addMission">Ajouter une mission</button>
+    <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
   </div>
 </template>
 
@@ -18,16 +23,31 @@ export default defineComponent({
   setup() {
     const gameStore = useGameStore()
     const missionDescription = ref('')
+    const errorMessage = ref('')
 
-    const addMission = (): void => {
+    const validateInput = (): void => {
       const trimmedDescription = missionDescription.value.trim()
-      if (trimmedDescription) {
-        gameStore.addMission(trimmedDescription)
-        missionDescription.value = ''
+      if (!trimmedDescription) {
+        errorMessage.value = 'La description de la mission ne peut pas être vide.'
+      } else if (!/^[A-Za-z0-9\s.,!?]{1,90}$/.test(trimmedDescription)) {
+        errorMessage.value = 'La description doit contenir uniquement des lettres, chiffres, espaces et ponctuation basique (90 caractères max).'
+      } else {
+        errorMessage.value = ''
       }
     }
 
-    return { missionDescription, addMission }
+    const addMission = (): void => {
+      const trimmedDescription = missionDescription.value.trim()
+      if (trimmedDescription && /^[A-Za-z0-9\s.,!?]{1,90}$/.test(trimmedDescription)) {
+        gameStore.addMission(trimmedDescription)
+        missionDescription.value = ''
+        errorMessage.value = ''
+      } else {
+        validateInput()
+      }
+    }
+
+    return { missionDescription, addMission, errorMessage, validateInput }
   }
 })
 </script>
@@ -66,5 +86,11 @@ export default defineComponent({
     font-size: 1em;
     padding: 10px 20px;
   }
+}
+
+.error-message {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 5px;
 }
 </style>
