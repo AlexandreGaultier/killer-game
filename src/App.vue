@@ -3,7 +3,7 @@
     <nav class="navbar">
       <router-link v-for="item in navItems" :key="item.path" :to="item.path" class="nav-item" :class="{ disabled: item.isDisabled }">
         <span class="nav-text">{{ item.text }}</span>
-        <span class="nav-icon">{{ item.icon }}</span>
+        <i :class="['nav-icon', item.icon]"></i>
       </router-link>
     </nav>
     <router-view></router-view>
@@ -24,11 +24,11 @@ export default defineComponent({
     })
 
     const navItems = computed(() => [
-      { path: '/', text: 'Règles', icon: '📖', isDisabled: gameStore.isGameStarted },
-      { path: '/setup', text: 'Joueurs', icon: '👥', isDisabled: gameStore.isGameStarted },
-      { path: '/game', text: 'Jeu', icon: '🎮', isDisabled: !gameStore.isGameStarted },
-      { path: '/admin', text: 'Admin', icon: '⚙️', isDisabled: false },
-      { path: '/podium', text: 'Podium', icon: '🏆', isDisabled: false },
+      { path: '/', text: 'Règles', icon: 'fas fa-book', isDisabled: false },
+      { path: '/setup', text: 'Joueurs', icon: 'fas fa-users', isDisabled: gameStore.isGameStarted },
+      { path: '/game', text: 'Jeu', icon: 'fas fa-gamepad', isDisabled: !gameStore.isGameStarted },
+      { path: '/admin', text: 'Admin', icon: 'fas fa-cog', isDisabled: false },
+      { path: '/podium', text: 'Podium', icon: 'fas fa-trophy', isDisabled: false },
     ])
 
     return { gameStore, navItems }
@@ -167,7 +167,10 @@ input::placeholder {
   }
 
   .nav-text { display: none; }
-  .nav-icon { display: inline-block; }
+  .nav-icon { 
+    display: inline-block;
+    font-size: 20px; /* Ajustez la taille selon vos préférences */
+  }
 
   router-view {
     flex-grow: 1;

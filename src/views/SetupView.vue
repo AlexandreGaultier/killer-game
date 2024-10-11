@@ -13,10 +13,13 @@
         <button @click="startGame" class="start-button">Commencer le jeu</button>
         <div class="mode-selection">
           <input type="checkbox" id="hardMode" v-model="hardMode">
-          <label for="hardMode" title="Mode difficile">💀</label>
+          <label for="hardMode" title="Mode difficile">
+            <i class="fas fa-skull"></i>
+          </label>
         </div>
       </div>
     </div>
+    <p>Mode difficile : {{ hardMode ? 'Activé' : 'Désactivé' }}</p>
     <!-- <div class="card content-card">
       <h2>Ajouter une mission</h2>
       <MissionInput />
