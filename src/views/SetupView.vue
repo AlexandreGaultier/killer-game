@@ -8,7 +8,6 @@
     </div>
     <PlayerList />
     <div class="game-controls">
-      <ResetButton class="reset-button" />
       <div class="start-controls">
         <button @click="startGame" class="start-button">Commencer le jeu</button>
         <div class="mode-selection">
@@ -41,11 +40,10 @@ import PlayerInput from '../components/PlayerInput.vue'
 import PlayerList from '../components/PlayerList.vue'
 import MissionInput from '../components/MissionInput.vue'
 import MissionList from '../components/MissionList.vue'
-import ResetButton from '../components/ResetButton.vue'
 
 export default defineComponent({
   name: 'SetupView',
-  components: { PlayerInput, PlayerList, MissionInput, MissionList, ResetButton },
+  components: { PlayerInput, PlayerList, MissionInput, MissionList },
   setup() {
     const router = useRouter()
     const gameStore = useGameStore()
@@ -87,9 +85,7 @@ export default defineComponent({
 
 .game-controls {
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  align-items: center;
+  justify-content: center;
   width: 100%;
   margin-top: 3rem;
 }
@@ -170,8 +166,7 @@ export default defineComponent({
 
 @media (min-width: 768px) {
   .game-controls {
-    flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
   }
 
   .start-controls {
