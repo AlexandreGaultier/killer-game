@@ -43,7 +43,8 @@
   }
   
   .player-chip:hover {
-    background-color: rgba(113, 178, 128, 0.3);
+    background-color: rgba(209, 102, 102, 0.2);
+    border: 1px solid rgb(209, 102, 102, 0.5);
     transform: translateY(-2px);
   }
   
