@@ -8,6 +8,7 @@
         :name="player.name"
         :isAlive="player.isAlive"
         :kills="player.kills"
+        :canDelete="!gameStore.isGameStarted"
         @click="removePlayer(player.id)"
       />
     </div>
@@ -29,10 +30,13 @@ export default defineComponent({
     const players = computed<Player[]>(() => gameStore.players)
 
     const removePlayer = (playerId: number): void => {
-      gameStore.removePlayer(playerId)
+      if (!gameStore.isGameStarted) {
+        gameStore.removePlayer(playerId)
+      }
     }
 
     return { 
+      gameStore,
       players, 
       removePlayer 
     }
