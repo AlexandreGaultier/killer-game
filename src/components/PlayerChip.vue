@@ -35,9 +35,9 @@ export default {
 
 <style scoped>
 .player-chip {
-  background-color: rgba(113, 178, 128, 0.2);
-  border: 1px solid rgba(113, 178, 128, 0.5);
-  color: #ffffff;
+  background-color: rgba(var(--primary-color-rgb), 0.2);
+  border: 1px solid rgba(var(--primary-color-rgb), 0.5);
+  color: var(--text-color);
   padding: 8px 16px;
   border-radius: 20px;
   display: inline-flex;
@@ -47,21 +47,21 @@ export default {
 }
 
 .player-chip:hover {
-  background-color: rgba(209, 102, 102, 0.2);
-  border: 1px solid rgb(209, 102, 102, 0.5);
+  background-color: rgba(var(--accent-red-rgb), 0.2);
+  border: 1px solid rgba(var(--accent-red-rgb), 0.5);
   transform: translateY(-2px);
 }
 
 .player-dead {
-  background-color: rgba(255, 99, 71, 0.2);
-  border-color: rgba(255, 99, 71, 0.5);
+  background-color: rgba(var(--accent-red-rgb), 0.2);
+  border-color: rgba(var(--accent-red-rgb), 0.5);
   text-decoration: line-through;
   opacity: 0.7;
 }
 
 .kill-count {
-  background-color: rgba(255, 255, 255, 0.2);
-  color: #ffffff;
+  background-color: rgba(var(--text-color-rgb), 0.2);
+  color: var(--text-color);
   border-radius: 50%;
   width: 24px;
   height: 24px;
@@ -78,8 +78,8 @@ export default {
 }
 
 .no-click:hover {
-  background-color: rgba(113, 178, 128, 0.2);
-  border: 1px solid rgba(113, 178, 128, 0.5);
+  background-color: rgba(var(--primary-color-rgb), 0.2);
+  border: 1px solid rgba(var(--primary-color-rgb), 0.5);
   transform: none;
 }
 </style>

@@ -118,7 +118,7 @@ summary {
 }
 
 .validate-button:hover {
-  background-color: #5a8f66;
+  background-color: rgba(var(--primary-color-rgb), 0.6);
 }
 
 .reject-button {
@@ -127,7 +127,7 @@ summary {
 }
 
 .reject-button:hover {
-  background-color: #d16666;
+  background-color: rgba(var(--accent-red-rgb), 0.6);
 }
 
 /* Styles pour les appareils mobiles */

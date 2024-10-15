@@ -27,7 +27,7 @@ setup() {
 
 <style scoped>
 .reset-button {
-background-color: #ff4136;
+background-color: var(--primary-color);
 color: white;
 border: none;
 padding: 12px 24px;
@@ -38,7 +38,7 @@ transition: background-color 0.3s ease;
 }
 
 .reset-button:hover {
-background-color: #d0342b;
+background-color: rgba(var(--primary-color-rgb), 0.6);
 }
 
 @media (max-width: 768px) {

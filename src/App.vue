@@ -40,12 +40,34 @@ export default defineComponent({
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 
 :root {
-  --primary-color: #71B280;
+  /* --primary-color: #71B280;
   --secondary-color: #134E5E;
   --text-color: #ffffff;
   --background-color: rgba(0, 0, 0, 0.5);
-  --accent-red: #E57373;
-  --accent-blue: #64B5F6;
+  --accent-red: #D35F5F;
+  --accent-blue: #4A90A0;
+
+  --primary-color-rgb: 113, 178, 128;
+  --secondary-color-rgb: 19, 78, 94;
+  --text-color-rgb: 255, 255, 255;
+  --background-color-rgb: 0, 0, 0;
+  --accent-red-rgb: 229, 115, 115;
+  --accent-blue-rgb: 100, 181, 246; */
+
+
+  --primary-color: #8B0000;
+  --secondary-color: #134E5E;
+  --text-color: #D3D3D3;
+  --background-color: #000000;
+  --accent-red: #D93030;  
+  --accent-blue: #3A7CA5;
+
+  --primary-color-rgb: 139, 0, 0;
+  --secondary-color-rgb: 19, 78, 94;
+  --text-color-rgb: 211, 211, 211;
+  --background-color-rgb: 0, 0, 0;
+  --accent-red-rgb: 255, 69, 0;
+  --accent-blue-rgb: 70, 130, 180;
 }
 
 body {

@@ -78,7 +78,7 @@ export default defineComponent({
 }
 
 .input-container button:hover {
-  background-color: #5a8f66;
+  background-color: rgba(var(--primary-color-rgb), 0.6);
 }
 
 @media (max-width: 768px) {

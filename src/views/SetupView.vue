@@ -109,7 +109,7 @@ export default defineComponent({
 }
 
 .start-button:hover {
-  background-color: #5a8f66;
+  background-color: rgba(var(--primary-color-rgb), 0.6);
 }
 
 .mode-selection {
@@ -128,7 +128,7 @@ export default defineComponent({
   justify-content: center;
   width: 48px;
   height: 48px;
-  background-color: #5a8f66;
+  background-color: var(--primary-color);
   color: var(--text-color);
   border-radius: 0 4px 4px 0;
   cursor: pointer;

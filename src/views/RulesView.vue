@@ -74,13 +74,13 @@
   }
   
   h1, h2, h3 {
-    color: var(--primary-color);
+    color: var(--secondary-color);
   }
   
   .add-players-button {
     font-size: 1em;
     padding: 10px 20px;
-    background-color: var(--primary-color);
+    background-color: var(--secondary-color);
     color: var(--text-color);
     border: none;
     border-radius: 4px;
@@ -91,7 +91,7 @@
   }
   
   .add-players-button:hover {
-    background-color: #5a8f66;
+    background-color: rgba(var(--secondary-color-rgb), 0.6);
   }
   
   section {
@@ -113,7 +113,7 @@
   li::before {
     counter-increment: item;
     content: counter(item);
-    background-color: var(--primary-color);
+    background-color: var(--secondary-color);
     color: var(--text-color);
     width: 24px;
     height: 24px;
