@@ -89,7 +89,7 @@ export default defineComponent({
 }
 
 .error-message {
-  color: red;
+  color: #ff4d4d;
   font-size: 0.9em;
   margin-top: 5px;
 }

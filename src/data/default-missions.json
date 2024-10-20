@@ -2,59 +2,203 @@
     "missions": [
         {
             "id": 1,
-            "description": "Faire chanter une chanson à la cible"
+            "description": "Faire complimenter la cible sur ses chaussures"
         },
         {
             "id": 2,
-            "description": "Faire dire 'Je suis un petit poney' à la cible"
+            "description": "Obtenir un high-five de la cible"
         },
         {
             "id": 3,
-            "description": "Obtenir un selfie avec la cible"
+            "description": "Faire raconter une blague à la cible"
         },
         {
             "id": 4,
-            "description": "Faire faire 10 sauts à la cible"
+            "description": "Convaincre la cible de prendre une photo de groupe"
         },
         {
             "id": 5,
-            "description": "Faire imiter un animal à la cible"
+            "description": "Faire dessiner un smiley à la cible"
         },
         {
             "id": 6,
-            "description": "Convaincre la cible de porter ses vêtements à l'envers pendant 10 minutes"
+            "description": "Obtenir que la cible partage son film préféré"
         },
         {
             "id": 7,
-            "description": "Faire avouer à la cible son crush secret"
+            "description": "Faire chanter le refrain d'une chanson populaire à la cible"
         },
         {
             "id": 8,
-            "description": "Obtenir que la cible fasse une déclaration d'amour à une personne présente"
+            "description": "Convaincre la cible de faire un tour de magie simple"
         },
         {
             "id": 9,
-            "description": "Faire manger un aliment bizarre à la cible (au choix de l'assassin)"
+            "description": "Faire mimer un mot à la cible"
         },
         {
             "id": 10,
-            "description": "Convaincre la cible de parler avec un accent ridicule"
+            "description": "Obtenir que la cible raconte une anecdote amusante"
         },
         {
             "id": 11,
-            "description": "Faire danser la macarena à la cible en public"
+            "description": "Faire deviner un nombre entre 1 et 10 à la cible"
         },
         {
             "id": 12,
-            "description": "Obtenir que la cible envoie un message embarrassant à son crush"
+            "description": "Convaincre la cible de faire un compliment à quelqu'un d'autre"
         },
         {
             "id": 13,
-            "description": "Faire porter un chapeau en aluminium (ou papier, ou démerde toi) à la cible"
+            "description": "Faire partager un conseil de vie à la cible"
         },
         {
             "id": 14,
-            "description": "Convaincre la cible de se faire maquiller"
+            "description": "Obtenir que la cible recommande un livre ou une série"
+        },
+        {
+            "id": 15,
+            "description": "Faire imiter un accent étranger à la cible pendant une phrase"
+        },
+        {
+            "id": 16,
+            "description": "Convaincre la cible de partager sa recette préférée"
+        },
+        {
+            "id": 17,
+            "description": "Faire dire un tongue-twister à la cible"
+        },
+        {
+            "id": 18,
+            "description": "Obtenir que la cible fasse une démonstration de son talent caché"
+        },
+        {
+            "id": 19,
+            "description": "Faire jouer à pierre-feuille-ciseaux avec la cible"
+        },
+        {
+            "id": 20,
+            "description": "Convaincre la cible de partager son rêve d'enfant"
+        },
+        {
+            "id": 21,
+            "description": "Faire deviner une célébrité à la cible"
+        },
+        {
+            "id": 22,
+            "description": "Obtenir que la cible raconte sa meilleure blague"
+        },
+        {
+            "id": 23,
+            "description": "Faire mimer une émotion à la cible"
+        },
+        {
+            "id": 24,
+            "description": "Convaincre la cible de partager son lieu de vacances idéal"
+        },
+        {
+            "id": 25,
+            "description": "Faire dire 'Bonjour' dans trois langues différentes à la cible"
+        },
+        {
+            "id": 26,
+            "description": "Obtenir que la cible fasse un origami simple"
+        },
+        {
+            "id": 27,
+            "description": "Faire partager un fait surprenant à la cible"
+        },
+        {
+            "id": 28,
+            "description": "Convaincre la cible de montrer sa photo de profil préférée"
+        },
+        {
+            "id": 29,
+            "description": "Faire deviner un animal à la cible en le mimant"
+        },
+        {
+            "id": 30,
+            "description": "Obtenir que la cible raconte son meilleur souvenir d'enfance"
+        },
+        {
+            "id": 31,
+            "description": "Faire écrire un haïku à la cible"
+        },
+        {
+            "id": 32,
+            "description": "Convaincre la cible de partager son plat préféré"
+        },
+        {
+            "id": 33,
+            "description": "Faire résoudre une énigme simple à la cible"
+        },
+        {
+            "id": 34,
+            "description": "Obtenir que la cible dessine un animal les yeux fermés"
+        },
+        {
+            "id": 35,
+            "description": "Faire dire un mot à l'envers à la cible"
+        },
+        {
+            "id": 36,
+            "description": "Convaincre la cible de partager son super-pouvoir souhaité"
+        },
+        {
+            "id": 37,
+            "description": "Faire deviner une chanson à la cible en la fredonnant"
+        },
+        {
+            "id": 38,
+            "description": "Obtenir que la cible fasse une imitation d'un personnage célèbre"
+        },
+        {
+            "id": 39,
+            "description": "Faire partager un conseil de productivité à la cible"
+        },
+        {
+            "id": 40,
+            "description": "Convaincre la cible de montrer sa pose de yoga préférée"
+        },
+        {
+            "id": 41,
+            "description": "Faire dire un virelangue à la cible"
+        },
+        {
+            "id": 42,
+            "description": "Obtenir que la cible raconte une blague de papa"
+        },
+        {
+            "id": 43,
+            "description": "Faire mimer une activité sportive à la cible"
+        },
+        {
+            "id": 44,
+            "description": "Convaincre la cible de partager sa citation préférée"
+        },
+        {
+            "id": 45,
+            "description": "Faire deviner un métier à la cible en le mimant"
+        },
+        {
+            "id": 46,
+            "description": "Obtenir que la cible fasse un tour de magie avec une pièce"
+        },
+        {
+            "id": 47,
+            "description": "Faire partager un conseil de voyage à la cible"
+        },
+        {
+            "id": 48,
+            "description": "Convaincre la cible de montrer sa grimace la plus drôle"
+        },
+        {
+            "id": 49,
+            "description": "Faire deviner une émotion à la cible en la mimant"
+        },
+        {
+            "id": 50,
+            "description": "Obtenir que la cible partage son rêve le plus fou"
         }
     ]
 }
