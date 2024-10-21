@@ -113,12 +113,12 @@ summary {
 }
 
 .validate-button {
-  background-color: var(--primary-color);
+  background-color: var(--accent-blue);
   color: #ffffff;
 }
 
 .validate-button:hover {
-  background-color: rgba(var(--primary-color-rgb), 0.6);
+  background-color: rgba(var(--accent-blue-rgb), 0.6);
 }
 
 .reject-button {

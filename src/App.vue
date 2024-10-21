@@ -55,14 +55,14 @@ export default defineComponent({
   --accent-blue-rgb: 100, 181, 246; */
 
 
-  --primary-color: #8B0000;
+  --primary-color: #d93030;
   --secondary-color: #134E5E;
   --text-color: #D3D3D3;
   --background-color: #000000;
   --accent-red: #D93030;  
   --accent-blue: #3A7CA5;
 
-  --primary-color-rgb: 139, 0, 0;
+  --primary-color-rgb: 217, 48, 48;
   --secondary-color-rgb: 19, 78, 94;
   --text-color-rgb: 211, 211, 211;
   --background-color-rgb: 0, 0, 0;

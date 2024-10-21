@@ -35,8 +35,8 @@ export default {
 
 <style scoped>
 .player-chip {
-  background-color: rgba(var(--primary-color-rgb), 0.2);
-  border: 1px solid rgba(var(--primary-color-rgb), 0.5);
+  background-color: rgba(var(--accent-blue-rgb), 0.2);
+  border: 1px solid rgba(var(--accent-blue-rgb), 0.5);
   color: var(--text-color);
   padding: 8px 16px;
   border-radius: 20px;
