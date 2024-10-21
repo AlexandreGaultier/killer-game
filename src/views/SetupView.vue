@@ -1,7 +1,8 @@
 <template>
   <div class="setup-view">
     <h1>Killer Game</h1>
-    <p>By Alexandre G.</p>
+    <p class="author">By Alexandre G.</p>
+    <router-link class="rules-link" to="/rules"><i style="margin-right: 0.6rem;" class="fas fa-book"></i> Lire les règles</router-link>
     <div class="card">
       <h2>Ajouter un joueur</h2>
       <PlayerInput />
@@ -67,6 +68,21 @@ export default defineComponent({
   align-items: center;
   max-width: 600px;
   margin: 0 auto;
+}
+
+.author {
+  font-size: 0.8em;
+  margin: 0 0 1rem 0;
+} 
+
+.rules-link {
+  align-self: flex-start;
+  background-color: var(--accent-blue);
+  color: var(--text-color);
+  padding: 10px 20px;
+  border-radius: 4px;
+  text-decoration: none;
+  margin-bottom: 1rem;
 }
 
 .card {

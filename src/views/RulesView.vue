@@ -2,7 +2,7 @@
     <div class="rules-view">
       <div class="header">
         <h1>Règles du jeu</h1>
-        <router-link to="/setup" class="add-players-button">Ajouter des joueurs</router-link>
+        <router-link to="/" class="add-players-button">Ajouter des joueurs</router-link>
       </div>
       <section class="admin-rules">
           <h2>Pour l'administrateur</h2>
@@ -43,7 +43,7 @@
       </div>
   
       <div class="bottom-button-container">
-        <router-link to="/setup" class="add-players-button">Ajouter des joueurs</router-link>
+        <router-link to="/" class="add-players-button">Ajouter des joueurs</router-link>
       </div>
     </div>
   </template>

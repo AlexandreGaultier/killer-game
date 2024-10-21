@@ -24,8 +24,8 @@ export default defineComponent({
     })
 
     const navItems = computed(() => [
-      { path: '/', text: 'Règles', icon: 'fas fa-book', isDisabled: false },
-      { path: '/setup', text: 'Joueurs', icon: 'fas fa-users', isDisabled: gameStore.isGameStarted },
+      { path: '/rules', text: 'Règles', icon: 'fas fa-book', isDisabled: false },
+      { path: '/', text: 'Joueurs', icon: 'fas fa-users', isDisabled: gameStore.isGameStarted },
       { path: '/game', text: 'Jeu', icon: 'fas fa-gamepad', isDisabled: !gameStore.isGameStarted },
       { path: '/admin', text: 'Admin', icon: 'fas fa-cog', isDisabled: false },
       { path: '/podium', text: 'Podium', icon: 'fas fa-trophy', isDisabled: false },
