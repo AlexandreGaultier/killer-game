@@ -87,7 +87,8 @@ export default defineComponent({
 <style scoped>
 .podium-view {
   text-align: center;
-  max-width: 1200px;
+  max-width: 1400px;
+  width: 100%;
   margin: 0 auto;
   padding: 20px;
   background-color: rgba(0, 0, 0, 0.6);
@@ -101,11 +102,13 @@ export default defineComponent({
   align-items: flex-end;
   height: 300px;
   margin-bottom: 40px;
+  width: 100%;
 }
 
 .podium-step {
   width: 30%;
-  margin: 0 10px;
+  max-width: 300px;
+  margin: 0 15px;
   background: linear-gradient(to bottom, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -139,6 +142,7 @@ export default defineComponent({
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  word-wrap: break-word;
 }
 
 .player-info h2 {
@@ -146,6 +150,8 @@ export default defineComponent({
   font-size: 1.5em;
   color: #fff;
   text-shadow: 0 0 15px rgb(201, 201, 201);
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .kills {
@@ -197,8 +203,8 @@ export default defineComponent({
   background-color: rgba(255, 255, 255, 0.05);
   border-radius: 5px;
   display: flex;
-  flex-direction: column;  /* Changé de row à column */
-  align-items: flex-start; /* Aligne les éléments à gauche */
+  flex-direction: column;
+  align-items: flex-start;
   transition: all 0.3s ease;
 }
 
@@ -209,8 +215,8 @@ export default defineComponent({
 
 .victim {
   font-weight: bold;
-  color: var(--accent-red);  /* Utilisation de la nouvelle variable de couleur */
-  margin-bottom: 5px;  /* Ajoute un espace sous le nom de la victime */
+  color: var(--accent-red);
+  margin-bottom: 5px;
 }
 
 .mission {
@@ -228,7 +234,9 @@ export default defineComponent({
 
 @media (max-width: 768px) {
   .podium-view {
-    padding: 5px;
+    padding: 0px;
+    min-width: auto;
+    width: 100%;
   }
 
   h1 {
@@ -237,6 +245,7 @@ export default defineComponent({
 
   .podium {
     flex-direction: column-reverse;
+    align-items: center;
     height: auto;
     margin-bottom: 20px;
   }
@@ -289,6 +298,23 @@ export default defineComponent({
 
   .mission {
     font-size: 0.9em;
+  }
+}
+
+@media (min-width: 769px) {
+  .podium-view {
+    min-width: 1000px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1200px) {
+  .podium-view {
+    max-width: 90%;
+    min-width: 769px;
+  }
+
+  .podium-step {
+    width: 28%;
   }
 }
 </style>
