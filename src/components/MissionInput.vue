@@ -9,7 +9,7 @@
       pattern="[A-Za-z0-9\s.,!?]+"
       title="Lettres, chiffres, espaces et ponctuation basique uniquement"
     />
-    <button @click="addMission">Ajouter une mission</button>
+    <button @click="addMission" class="add-mission-button">Ajouter une mission</button>
     <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
   </div>
 </template>
@@ -57,7 +57,6 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-bottom: 20px;
 }
 
 .input-container input {
@@ -81,10 +80,20 @@ export default defineComponent({
   background-color: rgba(var(--primary-color-rgb), 0.6);
 }
 
+.add-mission-button {
+  color: #fff !important;
+  margin-top: 1rem;
+  width: 25%;
+}
+
 @media (max-width: 768px) {
   .input-container button {
     font-size: 1em;
     padding: 10px 20px;
+  }
+
+  .add-mission-button {
+    width: 100%;
   }
 }
 
