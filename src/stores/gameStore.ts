@@ -4,11 +4,13 @@ import defaultMissions from '../data/default-missions.json'
 import failureMessages from '../data/failure-messages.json'
 
 const defaultPlayers = [
-  { name: "Alex", isAlive: true, kills: 0 },
+  { name: "Alexandre", isAlive: true, kills: 0 },
   { name: "Eline", isAlive: true, kills: 0 },
   { name: "Corentin", isAlive: true, kills: 0 },
   { name: "Maxime", isAlive: true, kills: 0 },
-  { name: "Félix", isAlive: true, kills: 0 }
+  { name: "Nathan", isAlive: true, kills: 0 },
+  { name: "Ilyesse", isAlive: true, kills: 0 },
+  { name: "Cassandre", isAlive: true, kills: 0 },
 ]
 
 export const useGameStore = defineStore('game', {

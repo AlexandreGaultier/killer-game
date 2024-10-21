@@ -12,7 +12,7 @@
         <button @click="startGame" class="start-button">Commencer le jeu</button>
         <div class="mode-selection">
           <input type="checkbox" id="hardMode" v-model="hardMode">
-          <label for="hardMode" title="Mode difficile">
+          <label for="hardMode" title="Mode difficile" :class="{ 'active': hardMode }">
             <i class="fas fa-skull"></i>
           </label>
         </div>
@@ -47,7 +47,7 @@ export default defineComponent({
   setup() {
     const router = useRouter()
     const gameStore = useGameStore()
-    const hardMode = ref(false)
+    const hardMode = ref(true)
 
     const startGame = () => {
       gameStore.setHardMode(hardMode.value)
@@ -71,6 +71,7 @@ export default defineComponent({
 
 .card {
   width: 100%;
+  min-width: 600px;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 8px;
   padding: 20px;
@@ -128,16 +129,19 @@ export default defineComponent({
   justify-content: center;
   width: 48px;
   height: 48px;
-  background-color: var(--primary-color);
+  background-color: rgba(var(--primary-color-rgb), 0.4);
   color: var(--text-color);
   border-radius: 0 4px 4px 0;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
   font-size: 1.5em;
+  opacity: 0.6;
 }
 
-.mode-selection input[type="checkbox"]:checked + label {
+.mode-selection input[type="checkbox"]:checked + label,
+.mode-selection label.active {
   background-color: var(--primary-color);
+  opacity: 1;
 }
 
 .mission-list-container {

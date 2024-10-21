@@ -56,8 +56,7 @@ export default defineComponent({
 .input-container {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 1rem;
 }
 
 .input-container input {
