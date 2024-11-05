@@ -227,6 +227,13 @@ export const useGameStore = defineStore('game', {
         this.saveToLocalStorage()
       }
     },
+
+    updateAssignmentMission(assignmentId: number, newMissionId: number) {
+      const assignment = this.assignments.find(a => a.id === assignmentId)
+      if (assignment) {
+        assignment.missionId = newMissionId
+      }
+    },
   },
   getters: {
     alivePlayers: (state) => state.players.filter(p => p.isAlive),

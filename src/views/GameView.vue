@@ -14,6 +14,9 @@
         <div class="button-group">
           <button @click="validateMission(assignment.id)" class="validate-button">Valider</button>
           <button @click="rejectMission(assignment.id)" class="reject-button">Refuser</button>
+          <button @click="changeMission(assignment.id)" class="change-button">
+            <i class="fas fa-random"></i>
+          </button>
         </div>
       </div>
     </div>
@@ -61,13 +64,39 @@ export default {
       return name.length > 11 ? name.slice(0, 11) + '...' : name
     }
 
+    const changeMission = (assignmentId: number) => {
+      const currentAssignment = gameStore.assignments.find(a => a.id === assignmentId)
+      if (!currentAssignment) return
+
+      // Récupérer toutes les missions actuellement attribuées aux joueurs en vie
+      const activeMissions = gameStore.assignments
+        .filter(a => !a.completed && !a.rejected) // Seulement les missions actives
+        .map(a => a.missionId)
+
+      // Trouver une mission disponible qui n'est pas déjà attribuée
+      const availableMissions = gameStore.missions
+        .filter(m => !activeMissions.includes(m.id) || m.id === currentAssignment.missionId)
+        .map(m => m.id)
+
+      if (availableMissions.length > 1) {
+        // Retirer la mission actuelle des possibilités
+        const newMissions = availableMissions.filter(m => m !== currentAssignment.missionId)
+        // Sélectionner une nouvelle mission au hasard
+        const newMissionId = newMissions[Math.floor(Math.random() * newMissions.length)]
+        
+        // Mettre à jour l'assignment avec la nouvelle mission
+        gameStore.updateAssignmentMission(assignmentId, newMissionId)
+      }
+    }
+
     return { 
       pendingAssignments, 
       getPlayerName, 
       getMissionDescription,
       validateMission,
       rejectMission,
-      truncateName
+      truncateName,
+      changeMission,
     }
   }
 }
@@ -107,9 +136,9 @@ summary {
 }
 
 .button-group {
-  margin-top: auto;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.5fr;
+  gap: 8px;
 }
 
 .validate-button {
@@ -130,6 +159,18 @@ summary {
   background-color: rgba(var(--accent-red-rgb), 0.6);
 }
 
+.change-button {
+  background-color: var(--accent-yellow);
+  color: #ffffff;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.change-button:hover {
+  background-color: rgba(var(--accent-yellow-rgb), 0.6);
+}
+
 /* Styles pour les appareils mobiles */
 @media (max-width: 768px) {
   .mission-cards {
@@ -141,12 +182,12 @@ summary {
   }
 
   .button-group {
-    flex-direction: column;
-    gap: 10px;
+    grid-template-columns: 1fr;
   }
 
   .validate-button,
-  .reject-button {
+  .reject-button,
+  .change-button {
     width: 100%;
     padding: 10px;
   }
